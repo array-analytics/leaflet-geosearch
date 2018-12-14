@@ -3910,14 +3910,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      try {
 	        return data.results.map(function (r) {
-	          return !r.bounds ? null : {
-	            x: r.geometry.lng,
-	            y: r.geometry.lat,
-	            label: r.formatted,
-	            bounds: [[parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
-	            [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)]],
-	            raw: r
-	          };
+	          if (r.bound) {
+	            return {
+	              x: r.geometry.lng,
+	              y: r.geometry.lat,
+	              label: r.formatted,
+	              bounds: [[parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
+	              [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)]],
+	              raw: r
+	            };
+	          }
 	        });
 	      } catch (e) {
 	        console.error("the error", e);
