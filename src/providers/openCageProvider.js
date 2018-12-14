@@ -15,22 +15,22 @@ export default class Provider extends BaseProvider {
   }
 
   parse({ data }) {
-    try{
-    return data.results.map(r => (
-      {
-      x: r.geometry.lng,
-      y: r.geometry.lat,
-      label: r.formatted,
-      bounds: r.bounds ? [
-        [parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
-        [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)], // n, e
-      ] : [],
-      raw: r,
-    }
-  ));
-  }catch(e){
-    console.error("the error", e);
-  }
+      var updatedResults = [];
+      data.results.forEach(r => {
+         if(r.bounds){
+            updatedResults.push({
+              x: r.geometry.lng,
+              y: r.geometry.lat,
+              label: r.formatted,
+              bounds:  [
+                [parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
+                [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)], // n, e
+              ],
+              raw: r,
+          });
+         }
+      });
+    return updatedResults;
   }
 
   async search({ query }) {
@@ -40,10 +40,8 @@ export default class Provider extends BaseProvider {
 
     const request = await fetch(url);
     const json = await request.json();
-	console.log("the result0", json);
-	var parsedData = this.parse({ data: json });
-	console.log("the result5", parsedData
-	);
+		var parsedData = this.parse({ data: json });
+
     return parsedData;
   }
 }

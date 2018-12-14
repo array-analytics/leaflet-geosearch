@@ -3908,24 +3908,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function parse(_ref2) {
 	      var data = _ref2.data;
 
-	      try {
-	        var updatedResults = [];
-	        data.results.forEach(function (r) {
-	          if (r.bounds) {
-	            updatedResults.push({
-	              x: r.geometry.lng,
-	              y: r.geometry.lat,
-	              label: r.formatted,
-	              bounds: [[parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
-	              [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)]],
-	              raw: r
-	            });
-	          }
-	        });
-	        return updatedResults;
-	      } catch (e) {
-	        console.error("the error", e);
-	      }
+	      var updatedResults = [];
+	      data.results.forEach(function (r) {
+	        if (r.bounds) {
+	          updatedResults.push({
+	            x: r.geometry.lng,
+	            y: r.geometry.lat,
+	            label: r.formatted,
+	            bounds: [[parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
+	            [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)]],
+	            raw: r
+	          });
+	        }
+	      });
+	      return updatedResults;
 	    }
 	  }, {
 	    key: 'search',
@@ -3937,13 +3933,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        protocol = ~location.protocol.indexOf('http') ? location.protocol : 'https:';
 	        url = this.endpoint({ query: query, protocol: protocol });
 
-	        return fetch(url).then(function ($await_2) {
-	          request = $await_2;
-	          return request.json().then(function ($await_3) {
-	            json = $await_3;
-	            console.log("the result0", json);
+	        return fetch(url).then(function ($await_1) {
+	          request = $await_1;
+	          return request.json().then(function ($await_2) {
+	            json = $await_2;
 	            parsedData = this.parse({ data: json });
-	            console.log("the result5", parsedData);
+
 	            return $return(parsedData);
 	          }.$asyncbind(this, $error), $error);
 	        }.$asyncbind(this, $error), $error);
@@ -6317,7 +6312,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return provider.search(query).then(function ($await_3) {
 
 	        results = $await_3;
-	        console.log("the result", results);
+
 	        if (results && results.length > 0) {
 	          this.showResult(results[0], query);
 	        }
@@ -6329,21 +6324,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var query = _ref3.query;
 	    var autoClose = this.options.autoClose;
 
-	    console.log("the result1", this.options);
 	    var markers = Object.keys(this.markers._layers);
-	    console.log("the result1", markers);
+
 	    if (markers.length >= this.options.maxMarkers) {
 	      this.markers.removeLayer(markers[0]);
 	    }
-	    console.log("the result2");
+
 	    var marker = this.addMarker(result, query);
 	    this.centerMap(result);
-	    console.log("the result3");
 	    this.map.fireEvent('geosearch/showlocation', {
 	      location: result,
 	      marker: marker
 	    });
-	    console.log("the result4");
+
 	    if (autoClose) {
 	      this.closeResults();
 	    }
