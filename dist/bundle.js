@@ -3908,16 +3908,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function parse(_ref2) {
 	      var data = _ref2.data;
 
-	      return data.results.map(function (r) {
-	        return {
-	          x: r.geometry.lng,
-	          y: r.geometry.lat,
-	          label: r.formatted,
-	          bounds: [[parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
-	          [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)]],
-	          raw: r
-	        };
-	      });
+	      try {
+	        return data.results.map(function (r) {
+	          return {
+	            x: r.geometry.lng,
+	            y: r.geometry.lat,
+	            label: r.formatted,
+	            bounds: [[parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
+	            [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)]],
+	            raw: r
+	          };
+	        });
+	      } catch (e) {
+	        console.error("the error", e);
+	      }
 	    }
 	  }, {
 	    key: 'search',
@@ -3929,10 +3933,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        protocol = ~location.protocol.indexOf('http') ? location.protocol : 'https:';
 	        url = this.endpoint({ query: query, protocol: protocol });
 
-	        return fetch(url).then(function ($await_1) {
-	          request = $await_1;
-	          return request.json().then(function ($await_2) {
-	            json = $await_2;
+	        return fetch(url).then(function ($await_2) {
+	          request = $await_2;
+	          return request.json().then(function ($await_3) {
+	            json = $await_3;
 	            console.log("the result0", json);
 	            parsedData = this.parse({ data: json });
 	            console.log("the result5", parsedData);
