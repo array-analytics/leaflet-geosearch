@@ -3910,7 +3910,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      try {
 	        return data.results.map(function (r) {
-	          return {
+	          return r.bounds ? null : {
 	            x: r.geometry.lng,
 	            y: r.geometry.lat,
 	            label: r.formatted,
