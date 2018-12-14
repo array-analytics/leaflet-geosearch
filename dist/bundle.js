@@ -3909,18 +3909,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var data = _ref2.data;
 
 	      try {
-	        return data.results.map(function (r) {
-	          if (r.bound) {
-	            return {
+	        var updatedResults = [];
+	        data.results.forEach(function (r) {
+	          if (r.bounds) {
+	            updatedResults.push({
 	              x: r.geometry.lng,
 	              y: r.geometry.lat,
 	              label: r.formatted,
 	              bounds: [[parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
 	              [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)]],
 	              raw: r
-	            };
+	            });
 	          }
 	        });
+	        return updatedResults;
 	      } catch (e) {
 	        console.error("the error", e);
 	      }
