@@ -34,6 +34,10 @@ export default class Provider extends BaseProvider {
 
     const request = await fetch(url);
     const json = await request.json();
-    return this.parse({ data: json });
+	console.log("the result0", json);
+	var parsedData = this.parse({ data: json });
+	console.log("the result5", parsedData
+	);
+    return parsedData;
   }
 }

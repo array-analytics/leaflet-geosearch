@@ -247,7 +247,7 @@ const Control = {
     const { provider } = this.options;
 
     const results = await provider.search(query);
-
+	console.log("the result", results);
     if (results && results.length > 0) {
       this.showResult(results[0], query);
     }
@@ -255,20 +255,21 @@ const Control = {
 
   showResult(result, { query }) {
     const { autoClose } = this.options;
-
+	console.log("the result1", this.options);
     const markers = Object.keys(this.markers._layers);
+	console.log("the result1", markers);
     if (markers.length >= this.options.maxMarkers) {
       this.markers.removeLayer(markers[0]);
     }
-
+console.log("the result2");
     const marker = this.addMarker(result, query);
     this.centerMap(result);
-
+console.log("the result3");
     this.map.fireEvent('geosearch/showlocation', {
       location: result,
       marker,
     });
-
+console.log("the result4");
     if (autoClose) {
       this.closeResults();
     }
