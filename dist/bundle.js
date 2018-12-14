@@ -3923,7 +3923,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'search',
 	    value: function search(_ref3) {
 	      return new Promise(function ($return, $error) {
-	        var query, protocol, url, request, json;
+	        var query, protocol, url, request, json, parsedData;
 	        query = _ref3.query;
 
 	        protocol = ~location.protocol.indexOf('http') ? location.protocol : 'https:';
@@ -3933,7 +3933,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	          request = $await_1;
 	          return request.json().then(function ($await_2) {
 	            json = $await_2;
-	            return $return(this.parse({ data: json }));
+	            console.log("the result0", json);
+	            parsedData = this.parse({ data: json });
+	            console.log("the result5", parsedData);
+	            return $return(parsedData);
 	          }.$asyncbind(this, $error), $error);
 	        }.$asyncbind(this, $error), $error);
 	      }.$asyncbind(this));
@@ -6306,7 +6309,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return provider.search(query).then(function ($await_3) {
 
 	        results = $await_3;
-
+	        console.log("the result", results);
 	        if (results && results.length > 0) {
 	          this.showResult(results[0], query);
 	        }
@@ -6318,20 +6321,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var query = _ref3.query;
 	    var autoClose = this.options.autoClose;
 
-
+	    console.log("the result1", this.options);
 	    var markers = Object.keys(this.markers._layers);
+	    console.log("the result1", markers);
 	    if (markers.length >= this.options.maxMarkers) {
 	      this.markers.removeLayer(markers[0]);
 	    }
-
+	    console.log("the result2");
 	    var marker = this.addMarker(result, query);
 	    this.centerMap(result);
-
+	    console.log("the result3");
 	    this.map.fireEvent('geosearch/showlocation', {
 	      location: result,
 	      marker: marker
 	    });
-
+	    console.log("the result4");
 	    if (autoClose) {
 	      this.closeResults();
 	    }
