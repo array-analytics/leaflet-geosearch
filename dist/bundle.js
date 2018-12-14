@@ -3914,8 +3914,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            x: r.geometry.lng,
 	            y: r.geometry.lat,
 	            label: r.formatted,
-	            bounds: [[parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
-	            [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)]],
+	            bounds: r.bounds ? [[parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
+	            [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)]] : [],
 	            raw: r
 	          };
 	        });

@@ -15,16 +15,22 @@ export default class Provider extends BaseProvider {
   }
 
   parse({ data }) {
-    return data.results.map(r => ({
+    try{
+    return data.results.map(r => (
+      {
       x: r.geometry.lng,
       y: r.geometry.lat,
       label: r.formatted,
-      bounds: [
+      bounds: r.bounds ? [
         [parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
         [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)], // n, e
-      ],
+      ] : [],
       raw: r,
-    }));
+    }
+  ));
+  }catch(e){
+    console.error("the error", e);
+  }
   }
 
   async search({ query }) {
