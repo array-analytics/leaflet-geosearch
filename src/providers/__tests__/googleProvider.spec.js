@@ -1,7 +1,7 @@
 import test from 'ava';
 import Provider from '../googleProvider';
 
-test('Can fetch results with Google Provider', async (t) => {
+test.skip('Can fetch results with Google Provider', async (t) => {
   const provider = new Provider();
 
   const results = await provider.search({ query: 'netherlands' });
@@ -16,7 +16,7 @@ test('Can fetch results with Google Provider', async (t) => {
   t.true(result.bounds[0][1] < result.bounds[1][1]);
 });
 
-test('Can get localized results', async (t) => {
+test.skip('Can get localized results', async (t) => {
   const provider = new Provider({
     params: {
       language: 'nl',

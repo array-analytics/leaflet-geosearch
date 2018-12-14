@@ -10,7 +10,9 @@ test('Can localize texts', (t) => {
   });
 
   const { input } = control.elements;
-  t.is(input.getAttribute('placeholder'), searchLabel);
+  let placeHolder = input.getAttribute('placeholder');
+  t.log(placeHolder);
+  t.true(placeHolder === searchLabel);
 });
 
 test('It will search when enter key is pressed', () => {
