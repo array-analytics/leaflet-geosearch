@@ -3908,20 +3908,35 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function parse(_ref2) {
 	      var data = _ref2.data;
 
-	      var updatedResults = [];
-	      data.results.forEach(function (r) {
-	        if (r.bounds) {
-	          updatedResults.push({
-	            x: r.geometry.lng,
-	            y: r.geometry.lat,
-	            label: r.formatted,
-	            bounds: [[parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
-	            [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)]],
-	            raw: r
-	          });
-	        }
+	      return data.results.filter(function (res) {
+	        return res.bounds;
+	      }).map(function (r) {
+	        return {
+	          x: r.geometry.lng,
+	          y: r.geometry.lat,
+	          label: r.formatted,
+	          bounds: [[parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
+	          [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)]],
+	          raw: r
+	        };
 	      });
-	      return updatedResults;
+
+	      /* var updatedResults = [];
+	       data.results.forEach(r => {
+	          if(r.bounds){
+	             updatedResults.push({
+	               x: r.geometry.lng,
+	               y: r.geometry.lat,
+	               label: r.formatted,
+	               bounds:  [
+	                 [parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
+	                 [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)], // n, e
+	               ],
+	               raw: r,
+	           });
+	          }
+	       });
+	      return updatedResults;*/
 	    }
 	  }, {
 	    key: 'search',

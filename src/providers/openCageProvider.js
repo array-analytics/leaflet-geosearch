@@ -15,22 +15,20 @@ export default class Provider extends BaseProvider {
   }
 
   parse({ data }) {
-      var updatedResults = [];
-      data.results.forEach(r => {
-         if(r.bounds){
-            updatedResults.push({
-              x: r.geometry.lng,
-              y: r.geometry.lat,
-              label: r.formatted,
-              bounds:  [
-                [parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
-                [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)], // n, e
-              ],
-              raw: r,
-          });
-         }
-      });
-    return updatedResults;
+    return data.results.filter(res => {
+      return res.bounds;
+    }).map(r => {
+        return {
+            x: r.geometry.lng,
+            y: r.geometry.lat,
+            label: r.formatted,
+            bounds:  [
+              [parseFloat(r.bounds.southwest.lat), parseFloat(r.bounds.southwest.lng)], // s, w
+              [parseFloat(r.bounds.northeast.lat), parseFloat(r.bounds.northeast.lng)], // n, e
+            ],
+            raw: r,
+          };
+    })
   }
 
   async search({ query }) {
