@@ -82,6 +82,7 @@ const Control = {
     if (autoComplete) {
       this.resultList = new ResultList({
         handleClick: ({ result }) => {
+			console.log(">>the result", result);
           input.value = result.label;
           this.onSubmit({ query: result.label, data: result });
         },
