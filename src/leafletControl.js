@@ -83,6 +83,7 @@ const Control = {
       this.resultList = new ResultList({
         handleClick: ({ result }) => {
           input.value = result.label;
+		  console.log("the result", result);
           this.onSubmit({ query: result.label, data: result });
         },
       });
