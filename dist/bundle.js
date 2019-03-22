@@ -6863,9 +6863,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (event.keyCode === _constants.ENTER_KEY) {
 	      var _item = list.select(list.selected);
 	      console.log("the query1", _item);
-	      var theQueryCoordinates = _item.y + "," + _item.x;
-	      console.log("the query2", theQueryCoordinates);
-	      this.onSubmit({ query: theQueryCoordinates, data: _item });
+	      var theQuery = input.value;
+	      if (_item.y) {
+	        theQuery = _item.y + "," + _item.x;
+	      }
+	      //const theQueryCoordinates = item.y + "," + item.x;
+	      console.log("the query2", theQuery);
+	      this.onSubmit({ query: theQuery, data: _item });
 	      return;
 	    }
 

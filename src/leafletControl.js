@@ -197,9 +197,13 @@ const Control = {
     if (event.keyCode === ENTER_KEY) {
       const item = list.select(list.selected);
 	  console.log("the query1", item);
-	  const theQueryCoordinates = item.y + "," + item.x;
-	   console.log("the query2", theQueryCoordinates);
-      this.onSubmit({ query: theQueryCoordinates, data: item });
+	  var theQuery = input.value;
+	  if(item.y){
+		  theQuery = item.y + "," + item.x;
+	  }
+	  //const theQueryCoordinates = item.y + "," + item.x;
+	   console.log("the query2", theQuery);
+      this.onSubmit({ query: theQuery, data: item });
       return;
     }
 
