@@ -6699,9 +6699,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.options.classNames.container += ' ' + options.style;
 	    }
 
-	    try {
-	      console.log("the query 3", query, this.options);
-	    } catch (e) {}
 	    this.searchElement = new _searchElement2.default(_extends({}, this.options, {
 	      handleSubmit: function handleSubmit(query) {
 	        return _this.onSubmit(query);
@@ -6734,9 +6731,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        handleClick: function handleClick(_ref2) {
 	          var result = _ref2.result;
 
-	          console.log("the query 4", result);
 	          var theQuery = result.y + "," + result.x;
-	          console.log("the query 4", theQuery);
 	          input.value = result.label;
 	          _this.onSubmit({ query: theQuery, data: result });
 	        }
@@ -6862,14 +6857,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    if (event.keyCode === _constants.ENTER_KEY) {
 	      var _item = list.select(list.selected);
-	      console.log("the query1", _item);
-	      console.log("the query2 input", input);
+
 	      var theQuery = input.value;
 	      if (_item) {
 	        theQuery = _item.y + "," + _item.x;
 	      }
 	      //const theQueryCoordinates = item.y + "," + item.x;
-	      console.log("the query2", theQuery);
 	      this.onSubmit({ query: theQuery, data: _item });
 	      return;
 	    }
@@ -6922,17 +6915,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	      if (query.length) {
-	        return provider.search({ query: query }).then(function ($await_3) {
-	          results = $await_3;
+	        return provider.search({ query: query }).then(function ($await_2) {
+	          results = $await_2;
 	          this.resultList.render(results);
-	          return $If_2.call(this);
+	          return $If_1.call(this);
 	        }.$asyncbind(this, $error), $error);
 	      } else {
 	        this.resultList.clear();
-	        return $If_2.call(this);
+	        return $If_1.call(this);
 	      }
 
-	      function $If_2() {
+	      function $If_1() {
 	        return $return();
 	      }
 	    }.$asyncbind(this));
@@ -6940,13 +6933,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  onSubmit: function onSubmit(query) {
 	    return new Promise(function ($return, $error) {
 	      var provider, results;
-
-	      console.log("the query3", query);
-
 	      provider = this.options.provider;
-	      return provider.search(query).then(function ($await_4) {
+	      return provider.search(query).then(function ($await_3) {
 
-	        results = $await_4;
+	        results = $await_3;
 
 	        if (results && results.length > 0) {
 	          this.showResult(results[0], query);

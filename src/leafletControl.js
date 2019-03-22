@@ -61,9 +61,6 @@ const Control = {
       this.options.classNames.container += ` ${options.style}`;
     }
 
-	try{
-		console.log("the query 3", query, this.options);
-	}catch(e){}
     this.searchElement = new GeoSearchElement({
       ...this.options,
       handleSubmit: query => this.onSubmit(query),
@@ -85,9 +82,7 @@ const Control = {
     if (autoComplete) {
       this.resultList = new ResultList({
         handleClick: ({ result }) => {
-			console.log("the query 4", result);
 		  const theQuery = result.y + "," + result.x;
-		  console.log("the query 4", theQuery);
           input.value = result.label;
           this.onSubmit({ query: theQuery, data: result });
         },
@@ -196,14 +191,12 @@ const Control = {
 
     if (event.keyCode === ENTER_KEY) {
       const item = list.select(list.selected);
-	  console.log("the query1", item);
-	  console.log("the query2 input", input);
+	  
 	  var theQuery = input.value;
 	  if(item){
 		  theQuery = item.y + "," + item.x;
 	  }
 	  //const theQueryCoordinates = item.y + "," + item.x;
-	   console.log("the query2", theQuery);
       this.onSubmit({ query: theQuery, data: item });
       return;
     }
@@ -258,8 +251,6 @@ const Control = {
   },
 
   async onSubmit(query) {
-	  console.log("the query3", query);
-	
     const { provider } = this.options;
 
     const results = await provider.search(query);
