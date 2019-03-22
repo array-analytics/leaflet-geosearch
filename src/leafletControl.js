@@ -86,8 +86,10 @@ const Control = {
       this.resultList = new ResultList({
         handleClick: ({ result }) => {
 			console.log("the query 4", result);
+		  const theQuery = result.y + "," + result.x;
+		  console.log("the query 4", theQuery);
           input.value = result.label;
-          this.onSubmit({ query: result.label, data: result });
+          this.onSubmit({ query: theQuery, data: result });
         },
       });
 
@@ -195,8 +197,9 @@ const Control = {
     if (event.keyCode === ENTER_KEY) {
       const item = list.select(list.selected);
 	  console.log("the query1", item);
-	  console.log("the query2", input);
-      this.onSubmit({ query: input.value, data: item });
+	  const theQueryCoordinates = item.y + "," + item.x;
+	   console.log("the query2", theQueryCoordinates);
+      this.onSubmit({ query: theQueryCoordinates, data: item });
       return;
     }
 

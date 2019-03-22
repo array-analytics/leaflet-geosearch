@@ -6735,8 +6735,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	          var result = _ref2.result;
 
 	          console.log("the query 4", result);
+	          var theQuery = result.y + "," + result.x;
+	          console.log("the query 4", theQuery);
 	          input.value = result.label;
-	          _this.onSubmit({ query: result.label, data: result });
+	          _this.onSubmit({ query: theQuery, data: result });
 	        }
 	      });
 
@@ -6861,8 +6863,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (event.keyCode === _constants.ENTER_KEY) {
 	      var _item = list.select(list.selected);
 	      console.log("the query1", _item);
-	      console.log("the query2", input);
-	      this.onSubmit({ query: input.value, data: _item });
+	      var theQueryCoordinates = _item.y + "," + _item.x;
+	      console.log("the query2", theQueryCoordinates);
+	      this.onSubmit({ query: theQueryCoordinates, data: _item });
 	      return;
 	    }
 
