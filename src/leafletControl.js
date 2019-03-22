@@ -197,6 +197,7 @@ const Control = {
     if (event.keyCode === ENTER_KEY) {
       const item = list.select(list.selected);
 	  console.log("the query1", item);
+	  console.log("the query2 input", input);
 	  var theQuery = input.value;
 	  if(item.y){
 		  theQuery = item.y + "," + item.x;

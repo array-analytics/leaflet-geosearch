@@ -6863,6 +6863,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (event.keyCode === _constants.ENTER_KEY) {
 	      var _item = list.select(list.selected);
 	      console.log("the query1", _item);
+	      console.log("the query2 input", input);
 	      var theQuery = input.value;
 	      if (_item.y) {
 	        theQuery = _item.y + "," + _item.x;
