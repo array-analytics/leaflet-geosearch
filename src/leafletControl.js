@@ -199,7 +199,7 @@ const Control = {
 	  console.log("the query1", item);
 	  console.log("the query2 input", input);
 	  var theQuery = input.value;
-	  if(item.y){
+	  if(item){
 		  theQuery = item.y + "," + item.x;
 	  }
 	  //const theQueryCoordinates = item.y + "," + item.x;

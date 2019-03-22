@@ -6865,7 +6865,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      console.log("the query1", _item);
 	      console.log("the query2 input", input);
 	      var theQuery = input.value;
-	      if (_item.y) {
+	      if (_item) {
 	        theQuery = _item.y + "," + _item.x;
 	      }
 	      //const theQueryCoordinates = item.y + "," + item.x;
